@@ -3,6 +3,7 @@ from __future__ import with_statement, unicode_literals, print_function
 
 import os
 import locale
+import six
 import logging
 
 from codecs import open
@@ -77,7 +78,12 @@ class Writer(object):
                     os.makedirs(os.path.dirname(complete_path))
                 except Exception:
                     pass
-                fp = open(complete_path, 'w')
+                if not six.PY3:
+                    fp = open(complete_path, 'w')
+                else:
+                    #If the encoding option is not specified, python 3 will return object 
+                    #with preferred system encoding ( locale.getpreferredencoding() )
+                    fp = open(complete_path, 'w', 'utf-8')
                 feed.write(fp, 'utf-8')
                 logger.info('writing %s' % complete_path)
 

@@ -110,7 +110,7 @@ class RstReader(Reader):
         return output
 
     def _get_publisher(self, filename):
-        extra_params = {'initial_header_level': '2'}
+        extra_params = {'initial_header_level': '2', 'input_encoding': 'utf-8'}
         pub = docutils.core.Publisher(
             destination_class=docutils.io.StringOutput)
         pub.set_components('standalone', 'restructuredtext', 'html')
