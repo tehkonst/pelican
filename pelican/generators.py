@@ -198,11 +198,11 @@ class ArticlesGenerator(Generator):
             arts.sort(key=attrgetter('date'), reverse=True)
             if self.settings.get('CATEGORY_FEED_ATOM'):
                 writer.write_feed(arts, self.context,
-                                  self.settings['CATEGORY_FEED_ATOM'] % cat.slug)
+                                  self.settings['CATEGORY_FEED_ATOM'] % cat)
 
             if self.settings.get('CATEGORY_FEED_RSS'):
                 writer.write_feed(arts, self.context,
-                                  self.settings['CATEGORY_FEED_RSS'] % cat.slug,
+                                  self.settings['CATEGORY_FEED_RSS'] % cat,
                                   feed_type='rss')
 
         if self.settings.get('TAG_FEED_ATOM') \
@@ -211,11 +211,11 @@ class ArticlesGenerator(Generator):
                 arts.sort(key=attrgetter('date'), reverse=True)
                 if self.settings.get('TAG_FEED_ATOM'):
                     writer.write_feed(arts, self.context,
-                                      self.settings['TAG_FEED_ATOM'] % tag.slug)
+                                      self.settings['TAG_FEED_ATOM'] % tag)
 
                 if self.settings.get('TAG_FEED_RSS'):
                     writer.write_feed(arts, self.context,
-                                      self.settings['TAG_FEED_RSS'] % tag.slug,
+                                      self.settings['TAG_FEED_RSS'] % tag,
                                       feed_type='rss')
 
         if self.settings.get('TRANSLATION_FEED_ATOM') or \
